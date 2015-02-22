@@ -1,0 +1,17 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Jordan Suchow
+    Sam Anthony
+    Laura Germine
+
+# THANKS
+
+    Harvard Vision Lab
+
+# TECHNOLOGY COLOPHON
+
+    HTML5, CSS3
+    jQuery, Modernizr
