@@ -6,7 +6,7 @@ maxScore = 100;
 
 console.log("Starting experiment...");
 
-faceIndex = 0;
+faceIndex = 1;
 responses = [];
 data = [];
 $("#stimulus").attr('src', 'img/faces/face_1.jpg');
