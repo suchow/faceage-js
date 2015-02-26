@@ -8,8 +8,10 @@ console.log("Starting experiment...");
 
 faceIndex = 1;
 responses = [];
+
 data = [];
-$("#stimulus").attr('src', 'img/faces/face_1.jpg');
+thisImage = "img/faces/face_" + faceIndex + ".jpg";
+$("#stimulus").attr("src", thisImage);
 $("#results").hide();
 $("#age").focus();
 time = Date.now();
@@ -18,16 +20,16 @@ $("#next-face").click(function() {
 
     rt = Date.now() - time;
 
-    if (faceIndex < numTrials) {  // The experiment is ongoing...
-
-        thisImage = "img/faces/face_" + (faceIndex + 1) + ".jpg";
-        age = parseInt($("#age").val());
+    if (faceIndex <= numTrials) {  // The experiment is ongoing...
 
         // Validate the input.
+        age = parseInt($("#age").val());
         if (isNaN(age) || age < 0 || age > 120) {
             $("#age").focus();
             return false;
         }
+
+        // Record the data.
         responses.push(age);
         data.push({
             "trial": faceIndex,
@@ -35,16 +37,18 @@ $("#next-face").click(function() {
             "age": age,
             "rt": rt,
         });
+    }
 
-        // Show the next face.
+    if (faceIndex < numTrials) {  // Show the next face.
+
         faceIndex++;
+        thisImage = "img/faces/face_" + faceIndex + ".jpg";
         $("#stimulus").attr("src", thisImage);
         time = Date.now();
         $("#age").val("");
         $("#age").focus();
-    }
 
-    if (faceIndex == numTrials) {  // The experiment is over...
+    } else {  // The experiment is over.
 
         $("#stage").hide();
         $("#age").hide();
