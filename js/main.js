@@ -10,7 +10,9 @@ faceIndex = 1;
 responses = [];
 
 data = [];
-thisImage = "img/faces/face_" + faceIndex + ".jpg";
+baseUrl = "img/faces/";
+//baseUrl = "http://testmybrain.org/tests/suchow_age/img/faces/";
+thisImage = baseUrl + "face_" + faceIndex + ".jpg";
 $("#stimulus").attr("src", thisImage);
 $("#results").hide();
 $("#age").focus();
@@ -42,11 +44,15 @@ $("#next-face").click(function() {
     if (faceIndex < numTrials) {  // Show the next face.
 
         faceIndex++;
-        thisImage = "img/faces/face_" + faceIndex + ".jpg";
+        thisImage = baseUrl + "face_" + faceIndex + ".jpg";
         $("#stimulus").attr("src", thisImage);
         time = Date.now();
         $("#age").val("");
         $("#age").focus();
+
+        // Preload the next image.
+        (new Image()).src = baseUrl + "face_" + Math.min(faceIndex + 1, numTrials) + ".jpg";
+
 
     } else {  // The experiment is over.
 
@@ -56,7 +62,7 @@ $("#next-face").click(function() {
         // Compute the score.
         score = numTrials;
         for (var i = 0; i <= numTrials - 1; i++) {
-            $("#results").append("<div><p><img src='img/faces/face_" + (i + 1) + ".jpg' width='100px' />" + groundTruth[i] + ", you guessed " + responses[i] + ".</p></div>");
+            $("#results").append("<div><p><img src='" + baseUrl + "face_" + (i + 1) + ".jpg' width='100px' />" + groundTruth[i] + ", you guessed " + responses[i] + ".</p></div>");
             error = (responses[i] - groundTruth[i]) / groundTruth[i];
             score = score - Math.abs(error);
         }
