@@ -17,6 +17,7 @@ $("#stimulus").attr("src", thisImage);
 $("#results").hide();
 $("#age").focus();
 time = Date.now();
+$("#num-trials").text(numTrials);
 
 $("#next-face").click(function() {
     proceedToNextTrial();
@@ -55,6 +56,7 @@ proceedToNextTrial = function () {
     if (faceIndex < numTrials) {  // Show the next face.
 
         faceIndex++;
+        $("#trial-number").text(faceIndex);
         thisImage = baseUrl + "face_" + faceIndex + ".jpg";
         $("#stimulus").attr("src", thisImage);
         time = Date.now();
