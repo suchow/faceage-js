@@ -22,6 +22,14 @@ $("#next-face").click(function() {
     proceedToNextTrial();
 });
 
+$("#final-score").click(function() {
+    // Set and submit the form data.
+    $("#score").val(score);
+    $("data").val(JSON.stringify(data));
+    $("#form").submit();
+    console.log("Results submitted.");
+});
+
 proceedToNextTrial = function () {
     rt = Date.now() - time;
 
@@ -71,17 +79,13 @@ proceedToNextTrial = function () {
         }
         score = Math.max(0, (maxScore * (score / numTrials)).toFixed(2));
 
+        $("#results").append("<button type='submit' name='Submit' class='btn btn-success btn-lg' id='final-score' role='button'>Get your score!</button>");
+
         // Display the results.
         $("#score-displayed").text(score);
         $("#results").show();
-
-        // Set and submit the form data.
-        $("#score").val(score);
-        $("data").val(JSON.stringify(data));
-        $("#form").submit();
-        console.log("Results submitted.");
     }
-});
+};
 
 Array.prototype.average = function () {
   var sum = 0, j = 0;

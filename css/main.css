@@ -21,3 +21,8 @@ body {
 #results img {
     padding-right: 10px;
 }
+
+#final-score {
+    margin-bottom: 40px;
+    margin-top: 25px;
+}
