@@ -19,7 +19,10 @@ $("#age").focus();
 time = Date.now();
 
 $("#next-face").click(function() {
+    proceedToNextTrial();
+});
 
+proceedToNextTrial = function () {
     rt = Date.now() - time;
 
     if (faceIndex <= numTrials) {  // The experiment is ongoing...
@@ -104,3 +107,9 @@ groundTruth = [
 if (!Date.now) {
     Date.now = function() { return new Date().getTime(); };
 }
+
+$('input').on("keypress", function(e) {
+    if (e.keyCode == 13) {
+        proceedToNextTrial();
+    }
+});
