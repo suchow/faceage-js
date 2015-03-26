@@ -15,6 +15,7 @@ baseUrl = "img/faces/";
 thisImage = baseUrl + "face_" + faceIndex + ".jpg";
 $("#stimulus").attr("src", thisImage);
 $("#results").hide();
+$("#final-score-end").hide();
 $("#age").focus();
 time = Date.now();
 $("#num-trials").text(numTrials);
@@ -23,10 +24,8 @@ $("#next-face").click(function() {
     proceedToNextTrial();
 });
 
-$("#final-score").click(function() {
+$(".final-score").click(function() {
     // Set and submit the form data.
-    $("#score").val(score);
-    $("data").val(JSON.stringify(data));
     $("#form").submit();
     console.log("Results submitted.");
 });
@@ -81,10 +80,12 @@ proceedToNextTrial = function () {
         }
         score = Math.max(0, (maxScore * (score / numTrials)).toFixed(2));
 
-        $("#results").append("<button type='submit' name='Submit' class='btn btn-success btn-lg' id='final-score' role='button'>Get your score!</button>");
+        $("#score").val(score);
+        $("#data").val(JSON.stringify(data));
 
         // Display the results.
         $("#score-displayed").text(score);
+        $("#final-score-end").show();
         $("#results").show();
     }
 };

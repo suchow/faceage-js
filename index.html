@@ -42,15 +42,14 @@
         </div>
 
         <div id="results">
-<!--             <p>Your score: <span id="score-displayed"></span></p>-->
-<!--             <p>In this survey, we asked you guess people's age by looking at photos of them. Here, a higher score (closer to 100) means that you did a better job of guessing their age.</p>
- -->        <button type="submit" name="Submit" class="btn btn-success btn-lg" id="final-score" role="button">Get your score!</button>
+            <button type="submit" name="Submit" class="btn btn-success btn-lg final-score" id="final-score-begin" role="button">Get your score!</button>
             <p>Here's each face, other people's average guess, and your guess:</p>
         </div>
+        <div id="final-score-end"><button type="submit" name="Submit" class="btn btn-success btn-lg final-score" role="button">Get your score!</button></div>
 
     </div>
 
-    <form id="form" action="/run" method="POST" onsubmit="return false">
+    <form id="form" action="/run" method="POST">
         <input type="hidden" name="score" id="score" />
         <input type="hidden" name="data" id="data" />
     </form>
